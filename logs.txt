@@ -5,3 +5,16 @@ POST - http://localhost:5000/api/products
 GET - http://localhost:5000/api/products/6
 GET - http://localhost:5000/api/products/9
 GET - http://localhost:5000/api/products
+GET - http://localhost:5000/
+GET - http://localhost:5000/style.css
+POST - http://localhost:5000/api/products
+POST - http://localhost:5000/api/products/5
+POST - http://localhost:5000/api/products
+GET - http://localhost:5000/api/products/5
+PUT - http://localhost:5000/api/products
+PUT - http://localhost:5000/api/products
+PUT - http://localhost:5000/api/products
+GET - http://localhost:5000/api/products
+PUT - http://localhost:5000/api/products
+GET - http://localhost:5000/api/products
+PUT - http://localhost:5000/api/products

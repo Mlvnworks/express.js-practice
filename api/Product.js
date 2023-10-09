@@ -1,4 +1,4 @@
-const products = require('../data');
+let products = require('../data');
 
 class Product {
     // API endpoint to get products data
@@ -57,6 +57,39 @@ class Product {
         } catch (err) {
             res.status(400).json({
                 msg: err.getMessage(),
+            });
+        }
+    };
+
+    // Update an item product
+    updateProductItem = (req, res) => {
+        const { id, name, description, price, category } = req.body;
+
+        if (id && name && description && price && category) {
+            try {
+                products = products.map(productItem => {
+                    if (productItem.id === parseInt(id)) {
+                        return {
+                            id,
+                            name,
+                            description,
+                            price,
+                            category,
+                        };
+                    } else {
+                        return productItem;
+                    }
+                });
+
+                res.json(products);
+            } catch (err) {
+                res.status(400).json({
+                    msg: err.getMessage(),
+                });
+            }
+        } else {
+            res.status(400).json({
+                msg: `Invalid request required body : id, name, description, price, and category.`,
             });
         }
     };
