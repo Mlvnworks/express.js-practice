@@ -28,6 +28,9 @@ app.post('/api/products', product.createNewProduct);
 // Update product item info
 app.put('/api/products', product.updateProductItem);
 
+// Delete product item
+app.delete('/api/products/:id', product.deleteProductItem);
+
 // Serve static files from the 'public' folder (e.g., index.html)
 app.use(express.static(path.join(__dirname, 'public')));
 

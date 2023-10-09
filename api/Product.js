@@ -63,8 +63,13 @@ class Product {
 
     // Update an item product
     updateProductItem = (req, res) => {
+        // Extract query body
         const { id, name, description, price, category } = req.body;
 
+        // check if product is exist
+        if (products.filter(productItem => parseInt(productItem.id) === parseInt(id)).length <= 0) return res.status(400).json({ msg: `Product with id of ${id} does not exists.` });
+
+        // Check if all properties are present
         if (id && name && description && price && category) {
             try {
                 products = products.map(productItem => {
@@ -91,6 +96,21 @@ class Product {
             res.status(400).json({
                 msg: `Invalid request required body : id, name, description, price, and category.`,
             });
+        }
+    };
+
+    deleteProductItem = (req, res) => {
+        const targetId = req.params.id;
+
+        // Check if `targetId` is existed
+        if (products.filter(({ id }) => parseInt(id) === parseInt(targetId)).length <= 0) return res.status(400).json({ msg: `Product with id of ${targetId} does not exists.` });
+
+        try {
+            products = products.filter(({ id }) => parseInt(id) !== parseInt(targetId));
+
+            res.json(products);
+        } catch (err) {
+            res.status(500).json({ msg: 'Failed to delete product' });
         }
     };
 }
